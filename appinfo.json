@@ -1,0 +1,19 @@
+{
+  "uuid": "3acf883c-ac3b-42df-a96a-5e849fbca28a",
+  "shortName": "yamaha_np",
+  "longName": "yamaha_np",
+  "companyName": "MakeAwesomeHappen",
+  "versionLabel": "1.0",
+  "sdkVersion": "3",
+  "targetPlatforms": ["aplite", "basalt", "chalk"],
+  "enableMultiJS": true,
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {
+    "dummy": 0
+  },
+  "resources": {
+    "media": []
+  }
+}
