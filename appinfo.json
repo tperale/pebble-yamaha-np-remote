@@ -11,7 +11,10 @@
     "watchface": false
   },
   "appKeys": {
-    "dummy": 0
+    "KEY_SOUND_LVL": 0,
+    "KEY_MUTE_STATUS": 1,
+    "KEY_POWER_STATUS": 2,
+    "KEY_CURRENT_SOURCE": 3
   },
   "resources": {
     "media": []

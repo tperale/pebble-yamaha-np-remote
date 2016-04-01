@@ -2,6 +2,15 @@ var yamaha_np_address = "";
 
 var api_address = yamaha_np_address + "/YamahaRemoteControl/ctrl";
 
+
+var yamaha_np_tags = {
+    'sound_level_tag' : 'Lvl',
+    'mute_status_tag' : 'Mute',
+    'power_status_tag' : 'Power',
+    'current_source_tag' : 'Input_Sel'
+};
+
+
 var yamaha_np_commands = {
     'cd' : '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Input><Input_Sel>CD</Input_Sel></Input></System></YAMAHA_AV>',
     'tray' : '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Misc><Tray>Open/Close</Tray></Misc></System></YAMAHA_AV>',
@@ -32,7 +41,9 @@ var yamaha_np_commands = {
 
     'get_volume' : '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"GET\"><System><Volume><Lvl>GetParam</Lvl></Volume></System></YAMAHA_AV>',
     'volume_up' : '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Volume><Lvl>Up</Lvl></Volume></System></YAMAHA_AV>',
-    'volume_down' : '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Volume><Lvl>Down</Lvl></Volume></System></YAMAHA_AV>'
+    'volume_down' : '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Volume><Lvl>Down</Lvl></Volume></System></YAMAHA_AV>',
+
+    'get_basic_status' : '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"GET\"><System><Basic_Status>GetParam</Basic_Status></System></YAMAHA_AV>'
 };
 
 
@@ -46,12 +57,25 @@ var send_action = function (command) {
 var request = function (command, callback) {
     var xhr = new XMLHttpRequest();
     xhr.onload = function () {
-        callback(this.responseText);
+        callback(this.responseXML);
     };
     xhr.open('POST', api_address);
     xhr.send(yamaha_np_commands[command]);
 };
 
+
+var get_basic = function () {
+    request('get_basic_status', function (response) {
+        var result = {
+            'KEY_SOUND_LVL' : response.getElementsByTagName(yamaha_np_tags['sound_level_tag']),
+            'KEY_MUTE_STATUS' : response.getElementsByTagName(yamaha_np_tags['mute_status_tag']),
+            'KEY_POWER_STATUS' : response.getElementsByTagName(yamaha_np_tags['power_status_tag']),
+            'KEY_CURRENT_SOURCE' : response.getElementsByTagName(yamaha_np_tags['current_source_tag'])
+        };
+
+        return result;
+    });
+}
 
 var main = function (request) {
     switch (request)  {
@@ -102,7 +126,7 @@ var main = function (request) {
             break;
     }
 
-    Pebble.sendAppMessage(dictionary,
+    Pebble.sendAppMessage(get_basic(),
         function(e) {
             console.log('Info sent to Pebble successfully!');
         },
@@ -114,8 +138,8 @@ var main = function (request) {
 
 Pebble.addEventListener('appmessage',
     function(e) {
-        console.log('PebbleKit JS ready!');
-
+        console.log('PebbleKit appmessage!');
+        main(e.payload(0));
     }
 ); 
 
