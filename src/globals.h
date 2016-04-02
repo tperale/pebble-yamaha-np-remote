@@ -24,6 +24,17 @@
 typedef enum {
     Request = 0,
     QueryData,
-}
+} js_request_t;
+
+int32_t t_sound_level;
+
+int32_t t_mute_status;
+
+#define POWER_STATUS_ON 0
+#define POWER_STATUS_STANDBY 1
+#define POWER_STATUS_OFF 2
+int32_t t_power_status;
+
+char t_current_source[32];
 
 #endif

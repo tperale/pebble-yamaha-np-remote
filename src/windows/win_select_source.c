@@ -82,84 +82,84 @@ static void window_load (Window* window) {
         /* .subtitle = "CD Tray" */
         /* .icon = , */
         .callback = select_source_cd,
-    }
+    };
 
     s_source_menu_item[1] = (SimpleMenuItem) {
         .title = "TUNER",
         /* .subtitle = "Frequency" */
         /* .icon = , */
         .callback = select_source_tuner,
-    }
+    };
 
     s_source_menu_item[2] = (SimpleMenuItem) {
         .title = "USB",
         /* .subtitle = "" */
         /* .icon = , */
         .callback = select_source_usb,
-    }
+    };
 
     s_source_menu_item[3] = (SimpleMenuItem) {
         .title = "SERVER",
         /* .subtitle = "" */
         /* .icon = , */
         .callback = select_source_server,
-    }
+    };
 
     s_source_menu_item[3] = (SimpleMenuItem) {
         .title = "SERVER",
         /* .subtitle = "" */
         /* .icon = , */
         .callback = select_source_server,
-    }
+    };
 
     s_source_menu_item[4] = (SimpleMenuItem) {
         .title = "NETRADIO",
         /* .subtitle = "" */
         /* .icon = , */
         .callback = select_source_netradio,
-    }
+    };
 
     s_source_menu_item[5] = (SimpleMenuItem) {
         .title = "SPOTIFY",
         /* .subtitle = "" */
         /* .icon = , */
         .callback = select_source_spotify,
-    }
+    };
 
     s_source_menu_item[6] = (SimpleMenuItem) {
         .title = "AIRPLAY",
         /* .subtitle = "" */
         /* .icon = , */
-        .callback = select_source_spotify,
-    }
+        .callback = select_source_airplay,
+    };
 
     s_source_menu_item[7] = (SimpleMenuItem) {
         .title = "AUX 1",
         /* .subtitle = "" */
         /* .icon = , */
         .callback = select_source_aux_one,
-    }
+    };
 
     s_source_menu_item[8] = (SimpleMenuItem) {
         .title = "AUX 2",
         /* .subtitle = "" */
         /* .icon = , */
         .callback = select_source_aux_two,
-    }
+    };
 
     s_source_menu_item[9] = (SimpleMenuItem) {
         .title = "DIGITAL 1",
         /* .subtitle = "" */
         /* .icon = , */
         .callback = select_source_digital_one,
-    }
+    };
 
     s_source_menu_item[10] = (SimpleMenuItem) {
         .title = "DIGITAL 2",
         /* .subtitle = "" */
         /* .icon = , */
         .callback = select_source_digital_two,
-    }
+    };
 
     s_menu_sections[0] = (SimpleMenuSection) {
         .title = "Select source.",
@@ -172,7 +172,7 @@ static void window_load (Window* window) {
 
     s_menu_layer = simple_menu_layer_create(bounds, window, s_menu_sections, NUMBER_OF_SECTIONS, NULL);
 
-    layer_add_child(window_layer, simple_menu_get_layer(s_menu_layer));
+    layer_add_child(window_layer, simple_menu_layer_get_layer(s_menu_layer));
 }
 
 static void window_unload (Window* window) {
@@ -185,9 +185,9 @@ void win_select_source_show (void) {
 
 void win_select_source_init (void) {
     s_window = window_create();
-
+    /* window_set_fullscreen (s_window, true); */
     window_set_window_handlers(s_window, (WindowHandlers) {
-            .appear = window_load,
+            .load = window_load,
             .unload = window_unload,
     });
 }

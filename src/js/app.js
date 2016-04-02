@@ -65,11 +65,44 @@ var request = function (command, callback) {
 
 
 var get_basic = function () {
+
+
     request('get_basic_status', function (response) {
+        var sound_lvl = parseInt(response.getElementsByTagName(yamaha_np_tags['sound_level_tag']), 10);
+
+        var mute_status;
+        switch (response.getElementsByTagName(yamaha_np_tags['mute_status_tag'])) {
+            case "On":
+                mute_status = 1;
+                break;
+            case "Off":
+                mute_status = 0; 
+                break;
+            default:
+                mute_status = null;
+                break;
+        }
+
+        var power_status;
+        switch (response.getElementsByTagName(yamaha_np_tags['power_status_tag'])) {
+            case 'On¶:
+                power_status = 0;
+                break;
+            case 'Standby':
+                power_status = 1;
+                break;
+            case 'Off':
+                power_status = 2;
+                break;
+            default:
+                power_status = null;
+                break;
+        }
+
         var result = {
-            'KEY_SOUND_LVL' : response.getElementsByTagName(yamaha_np_tags['sound_level_tag']),
-            'KEY_MUTE_STATUS' : response.getElementsByTagName(yamaha_np_tags['mute_status_tag']),
-            'KEY_POWER_STATUS' : response.getElementsByTagName(yamaha_np_tags['power_status_tag']),
+            'KEY_SOUND_LVL' : sound_lvl,
+            'KEY_MUTE_STATUS' : mute_status,
+            'KEY_POWER_STATUS' : power_status,
             'KEY_CURRENT_SOURCE' : response.getElementsByTagName(yamaha_np_tags['current_source_tag'])
         };
 
