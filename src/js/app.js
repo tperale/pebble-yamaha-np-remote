@@ -1,4 +1,4 @@
-var yamaha_np_address = "";
+var yamaha_np_address = "192.168.0.102";
 
 var api_address = yamaha_np_address + "/YamahaRemoteControl/ctrl";
 
@@ -172,14 +172,13 @@ var main = function (request) {
 Pebble.addEventListener('appmessage',
     function(e) {
         console.log('PebbleKit appmessage!');
-        main(e.payload(0));
+        main(e.payload[0]);
     }
 ); 
-
 
 Pebble.addEventListener('ready',
     function(e) {
         console.log('PebbleKit JS ready!');
-
+        main(e.payload[0]);
     }
 ); 

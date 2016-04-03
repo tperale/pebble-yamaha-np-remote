@@ -18,12 +18,17 @@ static SimpleMenuItem s_commands_menu_item[NUMBER_OF_COMMANDS];
 #define NUMBER_OF_OTHER 1
 static SimpleMenuItem s_other_menu_item[NUMBER_OF_OTHER];
 
+static void power_toggle () {
+    send_request (REQUEST_POWER_TOGGLE);
+}
+
 static void window_load (Window* window) {
     win_select_source_init ();
 
     s_commands_menu_item[0] = (SimpleMenuItem) {
         .title = "Power",
         .subtitle = "Click to power your device on.",
+        .callback = power_toggle,
     };
 
     s_commands_menu_item[1] = (SimpleMenuItem) {

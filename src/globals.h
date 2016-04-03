@@ -1,6 +1,8 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
+#include <pebble.h>
+
 #define KEY_SOUND_LVL 0
 #define KEY_MUTE_STATUS 1
 #define KEY_POWER_STATUS 2
@@ -36,5 +38,7 @@ int32_t t_mute_status;
 int32_t t_power_status;
 
 char t_current_source[32];
+
+void send_request (int value);
 
 #endif
