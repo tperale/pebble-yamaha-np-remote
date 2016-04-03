@@ -85,7 +85,7 @@ var get_basic = function () {
 
         var power_status;
         switch (response.getElementsByTagName(yamaha_np_tags['power_status_tag'])) {
-            case 'On¶:
+            case 'On':
                 power_status = 0;
                 break;
             case 'Standby':
@@ -167,7 +167,7 @@ var main = function (request) {
             console.log('Error sending info to Pebble!');
         }
     );
-}
+};
 
 Pebble.addEventListener('appmessage',
     function(e) {
