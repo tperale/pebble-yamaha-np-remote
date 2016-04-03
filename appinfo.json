@@ -1,5 +1,6 @@
 {
     "appKeys": {
+        "KEY_MAKE_REQUEST" : 100,
         "KEY_CURRENT_SOURCE": 3,
         "KEY_MUTE_STATUS": 1,
         "KEY_POWER_STATUS": 2,
@@ -8,15 +9,15 @@
     "capabilities": [
         ""
     ],
-    "companyName": "MakeAwesomeHappen",
+    "companyName": "thomacer",
     "enableMultiJS": true,
-    "longName": "yamaha_np",
+    "longName": "Yamaha NP remote",
     "projectType": "native",
     "resources": {
         "media": []
     },
     "sdkVersion": "3",
-    "shortName": "yamaha_np",
+    "shortName": "Yamaha remote",
     "targetPlatforms": [
         "aplite",
         "basalt",

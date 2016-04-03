@@ -1,4 +1,4 @@
-var yamaha_np_address = "192.168.0.102";
+var yamaha_np_address = "http://192.168.0.102";
 
 var api_address = yamaha_np_address + "/YamahaRemoteControl/ctrl";
 
@@ -59,14 +59,23 @@ var send_action = function (command) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', api_address);
     xhr.send(yamaha_np_commands[command]);
+    console.log("Sended command " + yamaha_np_commands[command] + " to " + api_address);
 };
 
 
 var request = function (command, callback) {
     var xhr = new XMLHttpRequest();
-    xhr.onload = function () {
-        callback(this.responseXML);
-    };
+    // xhr.onload = function () {
+    //     callback(this.responseXML);
+    // };
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log("Received : \n" + xhr.responseText);
+            callback(xhr.responseXML); // Another callback here
+        } else {
+            console.log("REQUEST error \n -- Status : " + xhr.status + "\n -- State : " + xhr.readyState);  
+        }
+    }; 
     xhr.open('POST', api_address);
     xhr.send(yamaha_np_commands[command]);
 };
@@ -75,6 +84,8 @@ var request = function (command, callback) {
 var get_basic = function () {
     request('get_basic_status', function (response) {
         var sound_lvl = parseInt(response.getElementsByTagName(yamaha_np_tags.sound_level_tag), 10);
+        console.log("Sound level is : " + sound_lvl);
+        basic_info.KEY_SOUND_LVL = sound_lvl;
 
         var mute_status;
         switch (response.getElementsByTagName(yamaha_np_tags.mute_status_tag)) {
@@ -88,6 +99,8 @@ var get_basic = function () {
                 mute_status = null;
                 break;
         }
+        console.log("Mute status is : " + mute_status);
+        basic_info.KEY_MUTE_STATUS = mute_status;
 
         var power_status;
         switch (response.getElementsByTagName(yamaha_np_tags.power_status_tag)) {
@@ -104,20 +117,20 @@ var get_basic = function () {
                 power_status = null;
                 break;
         }
+        console.log("Power status is : " + power_status);
+        basic_info.KEY_POWER_STATUS = power_status;
 
-        basic_info = {
-            'KEY_SOUND_LVL' : sound_lvl,
-            'KEY_MUTE_STATUS' : mute_status,
-            'KEY_POWER_STATUS' : power_status,
-            'KEY_CURRENT_SOURCE' : response.getElementsByTagName(yamaha_np_tags.current_source_tag)
-        };
+        var current_source = response.getElementsByTagName(yamaha_np_tags.current_source_tag);
+        basic_info.KEY_CURRENT_SOURCE = current_source;
+        console.log("Current source is : " + current_source);
 
-        console.log(JSON.stringify(basic_info));
+        // console.log("INFO fetched : \n" + JSON.stringify(basic_info));
     });
 };
 
-var main = function (request) {
-    switch (request) {
+var main = function (request_type) {
+    console.log("Got a request : " + request_type);
+    switch (request_type) {
         case 0:
             send_action('cd');
             break;
@@ -163,6 +176,9 @@ var main = function (request) {
         case 14:
             send_action('volume_down');
             break;
+        case 15:
+        default:
+            break;
     }
   
     get_basic();
@@ -180,7 +196,7 @@ var main = function (request) {
 Pebble.addEventListener('appmessage',
     function(e) {
         console.log('PebbleKit appmessage!');
-        main(e.payload[0]);
+        main(e.payload['KEY_MAKE_REQUEST']);
     }
 ); 
 

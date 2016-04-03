@@ -1,6 +1,9 @@
 #include <pebble.h>
 #include "./windows/win_main.h"
 
+static void update_info () {
+    win_main_update();
+}
 
 static void outbox_sent_callback (DictionaryIterator* iterator, void* context) {
     APP_LOG(APP_LOG_LEVEL_INFO, "Outbox send sucess.");
@@ -21,6 +24,8 @@ static void inbox_received_callback (DictionaryIterator* iterator, void* context
     t_mute_status = (int32_t) dict_find (iterator, KEY_MUTE_STATUS)->value->int32;
     t_power_status = (int32_t) dict_find (iterator, KEY_POWER_STATUS)->value->int32;
     strcpy(t_current_source, (char*) dict_find (iterator, KEY_CURRENT_SOURCE)->value->cstring);
+
+    update_info ();
 }
 
 int main(void) {

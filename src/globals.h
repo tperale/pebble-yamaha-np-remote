@@ -23,6 +23,13 @@
 #define REQUEST_POWER_TOGGLE 11
 #define REQUEST_MUTE_TOGGLE 12
 
+#define REQUEST_VOLUME_UP 13
+#define REQUEST_VOLUME_DOWN 14
+
+#define REQUEST_INFO 15
+
+#define MAKE_REQUEST 100
+
 typedef enum {
     Request = 0,
     QueryData,

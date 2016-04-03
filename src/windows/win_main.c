@@ -63,6 +63,10 @@ static void window_load (Window* window) {
     layer_add_child(window_layer, simple_menu_layer_get_layer(s_menu_layer));
 }
 
+static void window_appear (Window* window) {
+    send_request(REQUEST_INFO);
+}
+
 static void window_unload (Window* window) {
     simple_menu_layer_destroy(s_menu_layer);
 }
@@ -107,6 +111,7 @@ void win_main_init (void) {
     /* window_set_fullscreen (s_window, true); */
     window_set_window_handlers(s_window, (WindowHandlers) {
             .load = window_load,
+            .appear = window_appear,
             .unload = window_unload,
     });
 }
