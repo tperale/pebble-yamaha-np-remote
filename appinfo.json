@@ -14,7 +14,23 @@
     "longName": "Yamaha NP remote",
     "projectType": "native",
     "resources": {
-        "media": []
+        "media": [
+            {
+                "file" : "images/volumedown.png",
+                "name" : "VOLUME_DOWN_LOGO",
+                "type" : "bitmap"
+            },
+            {
+                "file" : "images/volumeup.png",
+                "name" : "VOLUME_UP_LOGO",
+                "type" : "bitmap"
+            },
+            {
+                "file" : "images/mute.png",
+                "name" : "VOLUME_MUTE_LOGO",
+                "type" : "bitmap"
+            }
+        ]
     },
     "sdkVersion": "3",
     "shortName": "Yamaha remote",

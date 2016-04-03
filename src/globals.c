@@ -1,5 +1,9 @@
 #include "./globals.h"
 
+int32_t t_sound_level = 0;
+int32_t t_mute_status = 0;
+int32_t t_power_status = 0;
+
 void send_request (int value) {
     APP_LOG(APP_LOG_LEVEL_DEBUG, "Sending request : %i", value);
     // Declare the dictionary's iterator
