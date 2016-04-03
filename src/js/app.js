@@ -83,12 +83,12 @@ var request = function (command, callback) {
 
 var get_basic = function () {
     request('get_basic_status', function (response) {
-        var sound_lvl = parseInt(response.getElementsByTagName(yamaha_np_tags.sound_level_tag), 10);
+        var sound_lvl = parseInt(response.getElementsByTagName(yamaha_np_tags.sound_level_tag)[0].textContent, 10);
         console.log("Sound level is : " + sound_lvl);
         basic_info.KEY_SOUND_LVL = sound_lvl;
 
         var mute_status;
-        switch (response.getElementsByTagName(yamaha_np_tags.mute_status_tag)) {
+        switch (response.getElementsByTagName(yamaha_np_tags.mute_status_tag)[0].textContent) {
             case "On":
                 mute_status = 1;
                 break;
@@ -103,7 +103,7 @@ var get_basic = function () {
         basic_info.KEY_MUTE_STATUS = mute_status;
 
         var power_status;
-        switch (response.getElementsByTagName(yamaha_np_tags.power_status_tag)) {
+        switch (response.getElementsByTagName(yamaha_np_tags.power_status_tag)[0].textContent) {
             case 'On':
                 power_status = 0;
                 break;
@@ -120,7 +120,7 @@ var get_basic = function () {
         console.log("Power status is : " + power_status);
         basic_info.KEY_POWER_STATUS = power_status;
 
-        var current_source = response.getElementsByTagName(yamaha_np_tags.current_source_tag);
+        var current_source = response.getElementsByTagName(yamaha_np_tags.current_source_tag)[0].textContent;
         basic_info.KEY_CURRENT_SOURCE = current_source;
         console.log("Current source is : " + current_source);
 
