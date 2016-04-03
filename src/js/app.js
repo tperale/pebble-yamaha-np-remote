@@ -47,6 +47,14 @@ var yamaha_np_commands = {
 };
 
 
+var basic_info = {
+  'KEY_SOUND_LVL' : 0,
+  'KEY_MUTE_STATUS' : 0,
+  'KEY_POWER_STATUS' : 0,
+  'KEY_CURRENT_SOURCE' : 'TUNER'
+};
+
+
 var send_action = function (command) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', api_address);
@@ -65,13 +73,11 @@ var request = function (command, callback) {
 
 
 var get_basic = function () {
-
-
     request('get_basic_status', function (response) {
-        var sound_lvl = parseInt(response.getElementsByTagName(yamaha_np_tags['sound_level_tag']), 10);
+        var sound_lvl = parseInt(response.getElementsByTagName(yamaha_np_tags.sound_level_tag), 10);
 
         var mute_status;
-        switch (response.getElementsByTagName(yamaha_np_tags['mute_status_tag'])) {
+        switch (response.getElementsByTagName(yamaha_np_tags.mute_status_tag)) {
             case "On":
                 mute_status = 1;
                 break;
@@ -84,7 +90,7 @@ var get_basic = function () {
         }
 
         var power_status;
-        switch (response.getElementsByTagName(yamaha_np_tags['power_status_tag'])) {
+        switch (response.getElementsByTagName(yamaha_np_tags.power_status_tag)) {
             case 'On':
                 power_status = 0;
                 break;
@@ -99,19 +105,19 @@ var get_basic = function () {
                 break;
         }
 
-        var result = {
+        basic_info = {
             'KEY_SOUND_LVL' : sound_lvl,
             'KEY_MUTE_STATUS' : mute_status,
             'KEY_POWER_STATUS' : power_status,
-            'KEY_CURRENT_SOURCE' : response.getElementsByTagName(yamaha_np_tags['current_source_tag'])
+            'KEY_CURRENT_SOURCE' : response.getElementsByTagName(yamaha_np_tags.current_source_tag)
         };
 
-        return result;
+        console.log(JSON.stringify(basic_info));
     });
-}
+};
 
 var main = function (request) {
-    switch (request)  {
+    switch (request) {
         case 0:
             send_action('cd');
             break;
@@ -158,8 +164,10 @@ var main = function (request) {
             send_action('volume_down');
             break;
     }
+  
+    get_basic();
 
-    Pebble.sendAppMessage(get_basic(),
+    Pebble.sendAppMessage(basic_info,
         function(e) {
             console.log('Info sent to Pebble successfully!');
         },
@@ -179,6 +187,6 @@ Pebble.addEventListener('appmessage',
 Pebble.addEventListener('ready',
     function(e) {
         console.log('PebbleKit JS ready!');
-        main(e.payload[0]);
+        // main(e.payload[0]);
     }
 ); 

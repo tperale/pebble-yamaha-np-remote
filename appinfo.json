@@ -1,22 +1,30 @@
 {
-  "uuid": "3acf883c-ac3b-42df-a96a-5e849fbca28a",
-  "shortName": "yamaha_np",
-  "longName": "yamaha_np",
-  "companyName": "MakeAwesomeHappen",
-  "versionLabel": "1.0",
-  "sdkVersion": "3",
-  "targetPlatforms": ["aplite", "basalt", "chalk"],
-  "enableMultiJS": true,
-  "watchapp": {
-    "watchface": false
-  },
-  "appKeys": {
-    "KEY_SOUND_LVL": 0,
-    "KEY_MUTE_STATUS": 1,
-    "KEY_POWER_STATUS": 2,
-    "KEY_CURRENT_SOURCE": 3
-  },
-  "resources": {
-    "media": []
-  }
+    "appKeys": {
+        "KEY_CURRENT_SOURCE": 3,
+        "KEY_MUTE_STATUS": 1,
+        "KEY_POWER_STATUS": 2,
+        "KEY_SOUND_LVL": 0
+    },
+    "capabilities": [
+        ""
+    ],
+    "companyName": "MakeAwesomeHappen",
+    "enableMultiJS": true,
+    "longName": "yamaha_np",
+    "projectType": "native",
+    "resources": {
+        "media": []
+    },
+    "sdkVersion": "3",
+    "shortName": "yamaha_np",
+    "targetPlatforms": [
+        "aplite",
+        "basalt",
+        "chalk"
+    ],
+    "uuid": "3acf883c-ac3b-42df-a96a-5e849fbca28a",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": false
+    }
 }
