@@ -133,6 +133,7 @@ static void menu_select_callback(MenuLayer* menu_layer, MenuIndex* cell_index, v
                     sound_change_action_bar_show();
                     break;
             }
+            break;
         case 1:
             switch (cell_index->row) {
                 case 0:
