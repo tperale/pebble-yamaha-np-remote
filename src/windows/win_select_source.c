@@ -12,46 +12,57 @@ static SimpleMenuItem s_source_menu_item[NUMBER_OF_SOURCE];
 /* ----- Source selection. */
 static void select_source_cd () {
     send_request(REQUEST_SOURCE_CHANGE_TO_CD);
+    window_stack_pop(true);
 }
 
 static void select_source_tuner () {
     send_request(REQUEST_SOURCE_CHANGE_TO_TUNER);
+    window_stack_pop(true);
 }
 
 static void select_source_usb () {
     send_request(REQUEST_SOURCE_CHANGE_TO_USB);
+    window_stack_pop(true);
 }
 
 static void select_source_server () {
     send_request(REQUEST_SOURCE_CHANGE_TO_SERVER);
+    window_stack_pop(true);
 }
 
 static void select_source_netradio () {
     send_request(REQUEST_SOURCE_CHANGE_TO_NETRADIO);
+    window_stack_pop(true);
 }
 
 static void select_source_spotify () {
     send_request(REQUEST_SOURCE_CHANGE_TO_SPOTIFY);
+    window_stack_pop(true);
 }
 
 static void select_source_airplay () {
     send_request(REQUEST_SOURCE_CHANGE_TO_AIRPLAY);
+    window_stack_pop(true);
 }
 
 static void select_source_aux_one () {
     send_request(REQUEST_SOURCE_CHANGE_TO_AUX1);
+    window_stack_pop(true);
 }
 
 static void select_source_aux_two () {
     send_request(REQUEST_SOURCE_CHANGE_TO_AUX2);
+    window_stack_pop(true);
 }
 
 static void select_source_digital_one () {
     send_request(REQUEST_SOURCE_CHANGE_TO_DIGITAL1);
+    window_stack_pop(true);
 }
 
 static void select_source_digital_two () {
     send_request(REQUEST_SOURCE_CHANGE_TO_DIGITAL2);
+    window_stack_pop(true);
 }
 /* -------------------------------------------- */
 
