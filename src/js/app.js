@@ -12,72 +12,74 @@ var yamaha_np_tags = {
 
 
 var yamaha_np_commands = {
-  'cd'                 : function () {
+  cd                 : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Input><Input_Sel>CD</Input_Sel></Input></System></YAMAHA_AV>';
   },
-  'tray'               : function () {
+  tray               : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Misc><Tray>Open/Close</Tray></Misc></System></YAMAHA_AV>';
   },
-  'tuner'              : function () {
+  tuner              : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Input><Input_Sel>TUNER</Input_Sel></Input></System></YAMAHA_AV>';
   },
-  'tuner_ preset'      : function () {
+  tuner_preset      : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"GET\"><Tuner><Play_Control><Preset><FM><Preset_Sel_Item>GetParam</Preset_Sel_Item></FM></Preset></Play_Control></Tuner></YAMAHA_AV>';
   },
-
-  'usb'                : function () {
+  usb                : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Input><Input_Sel>USB</Input_Sel></Input></System></YAMAHA_AV>';
   },
-  'server '            : function () {
+  server            : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Input><Input_Sel>SERVER</Input_Sel></Input></System></YAMAHA_AV>';
   },
 
-  'netradio'          : function () {
+  netradio          : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Input><Input_Sel>NET RADIO</Input_Sel></Input></System></YAMAHA_AV>';
   },
-  'spotify'           : function () {
+  spotify           : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Input><Input_Sel>Spotify</Input_Sel></Input></System></YAMAHA_AV>';
   },
-  'airplay'           : function () {
+  airplay           : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Input><Input_Sel>AirPlay</Input_Sel></Input></System></YAMAHA_AV>';
   },
-  'aux1'               : function () {
+  aux1               : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Input><Input_Sel>AUX1</Input_Sel></Input></System></YAMAHA_AV>';
   },
-  'aux2'               : function () {
+  aux2               : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Input><Input_Sel>AUX2</Input_Sel></Input></System></YAMAHA_AV>';
   },
-  'digital1'          : function () {
+  digital1          : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Input><Input_Sel>DIGITAL1</Input_Sel></Input></System></YAMAHA_AV>';
   },
-  'digital2'          : function () {
+  digital2          : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Input><Input_Sel>DIGITAL2</Input_Sel></Input></System></YAMAHA_AV>';
   },
-  'mute_toggle'       : function () {
-      return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Volume><Mute>On/Off</Mute></Volume></System></YAMAHA_AV>';
-  },
-  'power_param'       : function () {
+
+  power_param       : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"GET\"><System><Power_Control><Power>GetParam</Power></Power_Control></System></YAMAHA_AV>';
   },
-  'power_toggle'      : function () {
+  power_toggle      : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Power_Control><Power>On/Standby</Power></Power_Control></System></YAMAHA_AV>';
   },
-  'get_volume'        : function () {
+
+  get_volume        : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"GET\"><System><Volume><Lvl>GetParam</Lvl></Volume></System></YAMAHA_AV>';
   },
-  'volume_up'         : function () {
+  mute_toggle       : function () {
+      return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Volume><Mute>On/Off</Mute></Volume></System></YAMAHA_AV>';
+  },
+  volume_up         : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Volume><Lvl>Up</Lvl></Volume></System></YAMAHA_AV>';
   },
-  'volume_down'       : function () {
+  volume_down       : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"PUT\"><System><Volume><Lvl>Down</Lvl></Volume></System></YAMAHA_AV>';
   },
-  'get_basic_status'  : function () {
+
+  get_basic_status  : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"GET\"><System><Basic_Status>GetParam</Basic_Status></System></YAMAHA_AV>';
   },
-  'get_tuner_status'  : function () {
+  get_tuner_status  : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"GET\"><Tuner><Play_Info>GetParam</Play_Info></Tuner></YAMAHA_AV>';
   },
-  'get_tuner_presets' : function () {
+  get_tuner_presets : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"GET\"><Tuner><Play_Control><Preset><FM><Preset_Sel_Item>GetParam</Preset_Sel_Item></FM></Play_Control></Preset></Tuner></YAMAHA_AV>';
   },
 }
@@ -90,15 +92,22 @@ var basic_info = {
   'KEY_CURRENT_SOURCE' : 'TUNER'
 };
 
-
+/* @desc : Just send an action without any callback.
+ *
+ * @param {command} : Commmand to pass to the player.
+ */
 var send_action = function (command) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', api_address);
-    xhr.send(yamaha_np_commands[command]);
-    console.log("Sended command " + yamaha_np_commands[command] + " to " + api_address);
+    xhr.send(yamaha_np_commands[command]());
+    console.log("Sended command " + yamaha_np_commands[command]() + " to " + api_address);
 };
 
-
+/* @desc : Just send an action with a callback for the response.
+ *
+ * @param {command} : Commmand to pass to the player.
+ * @param {callback} : function to pass the response into.
+ */
 var request = function (command, callback) {
     var xhr = new XMLHttpRequest();
     // xhr.onload = function () {
@@ -113,7 +122,7 @@ var request = function (command, callback) {
         }
     }; 
     xhr.open('POST', api_address);
-    xhr.send(yamaha_np_commands[command]);
+    xhr.send(yamaha_np_commands[command]());
 };
 
 
@@ -159,8 +168,6 @@ var get_basic = function () {
         var current_source = response.getElementsByTagName(yamaha_np_tags.current_source_tag)[0].textContent;
         basic_info.KEY_CURRENT_SOURCE = current_source;
         console.log("Current source is : " + current_source);
-
-        // console.log("INFO fetched : \n" + JSON.stringify(basic_info));
     });
 };
 
