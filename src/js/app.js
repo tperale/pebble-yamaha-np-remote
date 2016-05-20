@@ -1,6 +1,6 @@
-var yamaha_np_address = "http://192.168.0.102";
+var yamaha_np_address = 'http://192.168.0.102';
 
-var api_address = yamaha_np_address + "/YamahaRemoteControl/ctrl";
+var api_address = yamaha_np_address + '/YamahaRemoteControl/ctrl';
 
 
 var yamaha_np_tags = {
@@ -82,7 +82,7 @@ var yamaha_np_commands = {
   get_tuner_presets : function () {
       return '<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"GET\"><Tuner><Play_Control><Preset><FM><Preset_Sel_Item>GetParam</Preset_Sel_Item></FM></Play_Control></Preset></Tuner></YAMAHA_AV>';
   },
-}
+};
 
 
 var basic_info = {
@@ -100,7 +100,7 @@ var send_action = function (command) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', api_address);
     xhr.send(yamaha_np_commands[command]());
-    console.log("Sended command " + yamaha_np_commands[command]() + " to " + api_address);
+    console.log('Sended command ' + yamaha_np_commands[command]() + ' to ' + api_address);
 };
 
 /* @desc : Just send an action with a callback for the response.
@@ -115,10 +115,10 @@ var request = function (command, callback) {
     // };
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            console.log("Received : \n" + xhr.responseText);
+            console.log('Received : \n' + xhr.responseText);
             callback(xhr.responseXML); // Another callback here
         } else {
-            console.log("REQUEST error \n -- Status : " + xhr.status + "\n -- State : " + xhr.readyState);  
+            console.log('REQUEST error \n -- Status : ' + xhr.status + '\n -- State : ' + xhr.readyState);  
         }
     }; 
     xhr.open('POST', api_address);
@@ -129,22 +129,22 @@ var request = function (command, callback) {
 var get_basic = function () {
     request('get_basic_status', function (response) {
         var sound_lvl = parseInt(response.getElementsByTagName(yamaha_np_tags.sound_level_tag)[0].textContent, 10);
-        console.log("Sound level is : " + sound_lvl);
+        console.log('Sound level is : ' + sound_lvl);
         basic_info.KEY_SOUND_LVL = sound_lvl;
 
         var mute_status;
         switch (response.getElementsByTagName(yamaha_np_tags.mute_status_tag)[0].textContent) {
-            case "On":
+            case 'On':
                 mute_status = 1;
                 break;
-            case "Off":
+            case 'Off':
                 mute_status = 0; 
                 break;
             default:
                 mute_status = null;
                 break;
         }
-        console.log("Mute status is : " + mute_status);
+        console.log('Mute status is : ' + mute_status);
         basic_info.KEY_MUTE_STATUS = mute_status;
 
         var power_status;
@@ -162,17 +162,17 @@ var get_basic = function () {
                 power_status = null;
                 break;
         }
-        console.log("Power status is : " + power_status);
+        console.log('Power status is : ' + power_status);
         basic_info.KEY_POWER_STATUS = power_status;
 
         var current_source = response.getElementsByTagName(yamaha_np_tags.current_source_tag)[0].textContent;
         basic_info.KEY_CURRENT_SOURCE = current_source;
-        console.log("Current source is : " + current_source);
+        console.log('Current source is : ' + current_source);
     });
 };
 
 var main = function (request_type) {
-    console.log("Got a request : " + request_type);
+    console.log('Got a request : ' + request_type);
     switch (request_type) {
         case 0:
             send_action('cd');
@@ -219,7 +219,6 @@ var main = function (request_type) {
         case 14:
             send_action('volume_down');
             break;
-        case 15:
         default:
             break;
     }
