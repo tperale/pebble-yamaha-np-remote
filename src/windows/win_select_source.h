@@ -3,6 +3,7 @@
 
 #include "pebble.h"
 #include "../globals.h"
+#include "../appinfo.h"
 
 void win_select_source_init (void);
 void win_select_source_show (void);

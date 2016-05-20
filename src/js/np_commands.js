@@ -1,8 +1,24 @@
 module.exports.tags = {
     soundLevel : 'Lvl',
+    // function (content) {
+    //     var re = new RegExp('<Lvl>[\s\S]*?<\/Lvl>');
+    //     return re.exec(content);
+    // },
     muteStatus : 'Mute',
+    // function (content) {
+    //     var re = new RegExp('<Mute>[\s\S]*?<\/Mute>');
+    //     return re.exec(content);
+    // },
     powerStatus : 'Power',
+    // function (content) {
+    //     var re = new RegExp('<Power>[\s\S]*?<\/Power>');
+    //     return re.exec(content);
+    // },
     currentSource : 'Input_Sel',
+    // function (content) {
+    //     var re = new RegExp('<Input_Sel>[\s\S]*?<\/Input_Sel>');
+    //     return re.exec(content);
+    // },
 };
 
 module.exports.commands = {

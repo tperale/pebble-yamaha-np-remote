@@ -1,5 +1,6 @@
 #include <pebble.h>
 #include "./windows/win_main.h"
+#include "./appinfo.h"
 
 static void update_info () {
     win_main_update();
@@ -28,7 +29,14 @@ static void inbox_received_callback (DictionaryIterator* iterator, void* context
     update_info ();
 }
 
+static void tick_handler (struct tm *tick_time, TimeUnits units_changed) {
+    send_request(GET, GET_BASIC_INFO);
+}
+
 int main(void) {
+  win_main_init ();
+  win_main_show ();
+
   app_message_register_inbox_received (inbox_received_callback);
   app_message_register_inbox_dropped (inbox_dropped_callback);
   app_message_register_outbox_failed (outbox_failed_callback);
@@ -36,8 +44,7 @@ int main(void) {
 
   app_message_open(app_message_inbox_size_maximum(), app_message_outbox_size_maximum());
 
-  win_main_init ();
-  win_main_show ();
+  tick_timer_service_subscribe(SECOND_UNIT, tick_handler);
 
   APP_LOG(APP_LOG_LEVEL_DEBUG, "Done initializing");
 

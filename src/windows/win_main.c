@@ -13,19 +13,19 @@ static char volume_level_buffer[32];
 static char source_buffer[32];
 
 static void power_toggle () {
-    send_request (REQUEST_POWER_TOGGLE);
+    send_request (MAKE_REQUEST, REQUEST_POWER_TOGGLE);
 }
 
 static void volume_up_handler () {
-    send_request (REQUEST_VOLUME_UP);
+    send_request (MAKE_REQUEST, REQUEST_VOLUME_UP);
 }
 
 static void volume_down_handler () {
-    send_request (REQUEST_VOLUME_DOWN);
+    send_request (MAKE_REQUEST, REQUEST_VOLUME_DOWN);
 }
 
 static void volume_mute_handler () {
-    send_request (REQUEST_MUTE_TOGGLE);
+    send_request (MAKE_REQUEST, REQUEST_MUTE_TOGGLE);
 }
 
 static void sound_change_action_bar_destroy () {
@@ -169,7 +169,7 @@ static void window_load (Window* window) {
 }
 
 static void window_appear (Window* window) {
-    send_request(REQUEST_INFO);
+    send_request(GET, GET_BASIC_INFO);
 }
 
 static void window_unload (Window* window) {
