@@ -8,6 +8,7 @@ module.exports = function(grunt) {
             files : [
                 'Gruntfile.js',
                 'src/js/**/*.js',
+                '!src/js/**/*.tpl.js',
                 '!src/js/pebble-js-app.js',
             ],
             options : {
@@ -19,6 +20,7 @@ module.exports = function(grunt) {
             build: {
                 src: [
                     'src/js/**/*.js',
+                    '!src/js/**/*.tpl.js',
                     '!src/js/pebble-js-app.js',
                 ],
                 dest: 'src/js/pebble-js-app.js',
@@ -35,7 +37,8 @@ module.exports = function(grunt) {
                     }
                 },
                 files: {
-                    'src/appinfo.h': ['src/appinfo.tpl.h']
+                    'src/appinfo.h': ['src/appinfo.tpl.h'],
+                    'src/js/appinfo.js': ['src/js/appinfo.tpl.js'],
                 }
             },
         },
